@@ -4,13 +4,18 @@
 
 ---
 
+## Assumptions
+- The ELEVATOR object is in working order
+- There is a steady power supply
+- The ELEVATOR is maintained such that it is able to perform the functions below
+
 ## Functions
 - goUp()
 - goDown()
 - doorsOpen()
 - doorsClose()
 
-## Variables and Permitted Values
+## Variables (and Permitted Values)
 - motor
     - off
     - on-up
@@ -26,4 +31,6 @@
     - notPressed
 - floorNumber
     - [array]
+
+*** The Elevator is Event-Driven ***
 
