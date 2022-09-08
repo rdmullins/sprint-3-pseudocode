@@ -49,7 +49,7 @@
     - current location (int)
     - tripQueue (array of upcoming stops)
 
-## Event: User Pushes the 'Up' Button 
+## Event: User Pushes the 'Up' Button -> upButton = TRUE
 
 1. floorNumberCall <- Floor number from which call originated
 1. floorNumberLocation <- elevator.currentLocation
@@ -81,9 +81,19 @@
 
 ## Event: User Inside the Elevator Car Selects Floor
 
+1. IF floorSelected < floorLocation AND elevator.goingUp, do not allow selection
+1. IF floorSelected > floorLocation AND elevator.comingDown, do not allow selection
+1. ELSE ADD floorSelected to elevator.tripQueue
+1. elevator.doorsClose()
+
+## Travel
+
+1. IF floorLocation == elevator.tripQueue[]
+1. STOP the elevator
+1. OPEN the doors
 
 
-FUNCTION goUp()
+<!-- FUNCTION goUp()
 1. IF upButton
 2. elevator.motor = off
 3. travel = floorNumberLocation - floorNumberCall
@@ -97,4 +107,4 @@ FUNCTION goUp()
     b. CALL FUNCTION elevator.goDown(travel)
     c. CALL FUNCTION elevator.doorsOpen()
 6. ELSE
-    a. CALL FUNCTION elevator.doorsOpen()
+    a. CALL FUNCTION elevator.doorsOpen() -->
