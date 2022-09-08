@@ -7,9 +7,15 @@
 ## Assumptions
 - The elevator object is in working order
 - There is a steady power supply
-- Floor numbers are encoded by the push button so that numbers outside the permitted range cannot be entered
+- Floor numbers are encoded by the push buttons so that numbers outside the permitted range cannot be entered
 - The elevator can determine its current position by accessing an automatic counter that increments as it ascends and decrements as it goes down
 - The elevator is maintained such that it is able to perform the functions below
+
+## Inputs
+- Call
+    - Up
+    - Down
+- Floor Selection (from panel inside elevator car)
 
 ## Functions
 - goUp()
@@ -18,8 +24,8 @@
 - doorsClose()
 
 ## Variables (and Permitted Values)
-- floorNumberCall
-- floorNumberLocation
+- floorNumberCall (value range established by system)
+- floorNumberLocation (value range established by system)
 - travel
 
 ## Properties (and States)
@@ -36,8 +42,32 @@
 - floorButton (boolean)
     - pressed = TRUE
     - notPressed = FALSE
+- elevator
+    - goingUp (boolean)
+    - comingDown (boolean)
+    - stopped (boolean)
+    - current location (int)
+    - tripQueue (array of upcoming stops)
 
-*** The Elevator is Event-Driven ***
+## Event: User Pushes the 'Up' Button 
+
+1. floorNumberCall <- Floor number from which call originated
+1. floorNumberLocation <- elevator.currentLocation
+1. moving
+    a. <- TRUE IF elevator.goingUp OR elevator.comingDown
+    a. <- FALSE IF elevator.stopped
+1. travel <- floorNumberCall - floorNumberLocation
+1. IF (travel < 0), call came from below the current location
+    a. (SET travel = absolute value of travel)
+1. IF (travel > 0), call came from above the current location
+    a. INSERT floorNumberCall into the elevator.tripQueue
+1. IF (travel == 0), STOP the elevator car and elevator.doorsOpen()
+
+## Event: User Pushes the 'Down' Button
+
+## Event: User Inside the Elevator Car Selects Floor
+
+
 
 FUNCTION goUp()
 1. IF upButton
