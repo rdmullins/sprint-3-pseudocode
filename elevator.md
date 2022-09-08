@@ -54,16 +54,30 @@
 1. floorNumberCall <- Floor number from which call originated
 1. floorNumberLocation <- elevator.currentLocation
 1. moving
-    a. <- TRUE IF elevator.goingUp OR elevator.comingDown
-    a. <- FALSE IF elevator.stopped
+    - <- TRUE IF elevator.goingUp OR elevator.comingDown
+    - <- FALSE IF elevator.stopped
 1. travel <- floorNumberCall - floorNumberLocation
 1. IF (travel < 0), call came from below the current location
-    a. (SET travel = absolute value of travel)
-1. IF (travel > 0), call came from above the current location
-    a. INSERT floorNumberCall into the elevator.tripQueue
+    - (SET travel = absolute value of travel)
+    - WHEN elevator.comingDown, add floorNumberCall to elevator.tripQueue
+1. IF (travel > 0 and elevator.goingUp), call came from above the current location
+    - INSERT floorNumberCall into the elevator.tripQueue
 1. IF (travel == 0), STOP the elevator car and elevator.doorsOpen()
 
 ## Event: User Pushes the 'Down' Button
+
+1. floorNumberCall <- Floor number from which call originated
+1. floorNumberLocation <- elevator.currentLocation
+1. moving
+    - <- TRUE IF elevator.goingUp OR elevator.comingDown
+    - <- FALSE IF elevator.stopped
+1. travel <- floorNumberCall - floorNumberLocation
+1. IF (travel < 0), call came from below the current location
+    - INSERT floorNumberCall into the elevator.tripQueue
+1. IF (travel > 0 and elevator.goingUp), call came from above the current location
+    - (SET travel = absolute value of travel)
+    - WHEN elevator.comingDown, add floorNumberCall to elevator.tripQueue
+1. IF (travel == 0), STOP the elevator car and elevator.doorsOpen()
 
 ## Event: User Inside the Elevator Car Selects Floor
 
