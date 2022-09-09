@@ -15,7 +15,8 @@
 | Name | Parameter(s) |
 | --- | --- |
 | handleCall() | **direction** (up or down), **originFloor** (int*) |
-| addStop() | **originFloor** (int*)
+| addStop() | **originFloor** (int*) |
+| holdCall() | **originFloor** (int*) |
 | move() | **direction** (up or down) |
 | floorSelection() | **destinationFloor** (int*) |
 | openDoors() | |
@@ -36,3 +37,19 @@
 - Call Button (Up)
 - Call Button (Down)
 - Floor Selection (int - see note in **Assumptions**)
+
+## Global Variables
+- **tripQueue** (ARRAY of permissable floor numbers)
+- **holdFloors** (ARRAY of calls to handle)
+
+---
+
+## Function *handleCall(direction, originFloor)*
+1. BEGIN
+1. READ elevator.currentFloor
+1. IF ((elevator.currentFloor > originFloor) AND (elevator.goingDown) AND (direction == down)
+1. OR
+1. IF ((elevator.currentFloor < originFloor) AND (elevator.goingUp) AND (direction == up)
+1. CALL function addStop(originFloor)
+1. ELSE
+1. CALL function holdCall(originFloor)
