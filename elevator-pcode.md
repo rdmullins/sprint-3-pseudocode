@@ -1,4 +1,5 @@
-# Elevator Pseudocode
+# Sprint 3: Pseudocode
+## Elevator
 ### by Roger Mullins, Team DaVinci
 
 ---
