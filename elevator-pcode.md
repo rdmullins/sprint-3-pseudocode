@@ -17,7 +17,7 @@
 | handleCall() | **direction** (up or down), **originFloor** (int*) |
 | addStop() | **originFloor** (int*) |
 | holdCall() | **originFloor** (int*) |
-| move() | **direction** (up or down) |
+| move()** | **direction** (up or down) |
 | floorSelection() | **destinationFloor** (int*) |
 | assessQueue() | |
 | stop()** | |
@@ -87,4 +87,13 @@
 ## Function *holdCall(originFloor)*
 1. BEGIN
 1. ADD originFloor to **holdFloors**
+1. END
+
+## Function *floorSelection(destinationFloor)*
+1. BEGIN
+1. READ elevator.currentFloor
+1. IF (destinationFloor > elevator.currentFloor) AND (elevator.goingUp)
+1. OR
+1. IF (destinationFloor < elevator.currentFloor) AND (elevator.goingDown)
+1. ADD destinationFloor to **tripQueue**
 1. END
